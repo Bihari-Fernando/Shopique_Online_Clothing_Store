@@ -8,7 +8,7 @@ const CartView = () => {
   const navigate = useNavigate();
 
   const totalPrice = cartItems.reduce(
-    (total, item) => total + item.price * item.quantity,
+    (total, product) => total + product.price * product.quantity,
     0
   );
 
@@ -25,25 +25,25 @@ const CartView = () => {
     <div className="container my-10">
       <h2 className="mb-4 text-2xl font-bold text-center">Your Cart</h2>
       <div className="flex flex-col gap-4">
-        {cartItems.map((item, index) => (
+        {cartItems.map((product, index) => (
           <div
             key={index}
             className="flex flex-col md:flex-row items-center justify-between p-4 border rounded shadow"
           >
             <div className="flex items-center gap-4">
               <img
-                src={item.image}
-                alt={item.name}
+                src={product.image}
+                alt={product.name}
                 style={{ width: '100px', height: '100px', objectFit: 'cover' }}
                 className="rounded"
               />
               <div>
-                <h5>{item.name}</h5>
-                <p>Price: ${item.price}</p>
-                <p>Quantity: {item.quantity}</p>
+                <h5>{product.name}</h5>
+                <p>Price: ${product.price}</p>
+                <p>Quantity: {product.quantity}</p>
               </div>
             </div>
-            <Button variant="danger" onClick={() => removeFromCart(item.id)}>
+            <Button variant="danger" onClick={() => removeFromCart(product.id)}>
               Remove
             </Button>
           </div>
