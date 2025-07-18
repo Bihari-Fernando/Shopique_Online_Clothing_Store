@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { Button } from "react-bootstrap";
 import { CartContext } from "../Cart/CartContext";
 import Navbar from "../Navbar/Navbar";
+import Footer from "../Footer/Footer";
 
 const ItemView = () => {
   const location = useLocation();
@@ -115,6 +116,7 @@ const ItemView = () => {
           </div>
         </div>
       </div>
+      <Footer/>
     </div>
   );
 };
