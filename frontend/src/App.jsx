@@ -15,19 +15,17 @@ import Register from './components/Common/Authentication/Register';
 const App = () => {
   return (
     <div  className="bg-white dark:bg-gray-900 dark:text-white ">
-      <Navbar />
-      <CartDrawer/>
+
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/womens" element={<WomenPage />} />
-        <Route path="/product/:id" element={<ProductView />} />
-        <Route path="/item/:id" element={<ItemView />} />
+        <Route path="/category/:id" element={<ProductView />} />
+        <Route path="/product/:id" element={<ItemView />} />
         <Route path='/mens' element={<MenPage/>}/>
         <Route path='/kids' element={<KidsPage/>}/>
         <Route path='/login' element={<Login/>}/>
         <Route path='/register' element={<Register/>}/>
       </Routes>
-      <Footer />
     </div>
   );
 };
