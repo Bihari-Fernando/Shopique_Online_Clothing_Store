@@ -10,7 +10,7 @@ const CartDrawer = () => {
   const navigate = useNavigate();
 
   const totalPrice = cartItems.reduce(
-    (total, item) => total + item.price * item.quantity,
+    (total, product) => total + product.price * product.quantity,
     0
   );
 
@@ -28,23 +28,23 @@ const CartDrawer = () => {
           <p>Your cart is empty.</p>
         ) : (
           <div className="flex flex-col gap-4">
-            {cartItems.map((item, index) => (
+            {cartItems.map((product, index) => (
               <div
-                key={item.id || index}
+                key={product.id || index}
                 className="flex items-center justify-between gap-3 border-b pb-2"
               >
                 <img
-                  src={item.image}
-                  alt={item.name}
+                  src={product.image}
+                  alt={product.name}
                   className="w-16 h-16 object-cover rounded"
                 />
                 <div className="flex-1">
-                  <p className="font-semibold">{item.name}</p>
+                  <p className="font-semibold">{product.name}</p>
                   <p className="text-sm text-gray-600 dark:text-gray-400">
-                    ${item.price} × {item.quantity}
+                    ${product.price} × {product.quantity}
                   </p>
                 </div>
-                <Button size="sm" variant="outline-danger" onClick={() => removeFromCart(item.id)}>Remove</Button>
+                <Button size="sm" variant="outline-danger" onClick={() => removeFromCart(product.id)}>Remove</Button>
               </div>
             ))}
           </div>
