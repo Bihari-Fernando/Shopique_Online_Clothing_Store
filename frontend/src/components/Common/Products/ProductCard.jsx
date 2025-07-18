@@ -5,11 +5,11 @@ import Image from "../../../assets/Hero/women.jpg";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
-const ProductCard = ({ product }) => {
+const ProductCard = ({ category }) => {
   const navigate = useNavigate();
 
   const handleCardClick = () => {
-    navigate(product.route);
+    navigate(category.route);
   };
 
   return (
@@ -21,11 +21,11 @@ const ProductCard = ({ product }) => {
       <Card style={{ width: "14rem" }} className="border-1 m-2 shadow">
         <Card.Img
           variant="top"
-          src={product.image}
+          src={category.image}
           style={{ height: "200px", objectFit: "cover" }}
         />
         <Card.Body>
-          <Card.Title>{product.name}</Card.Title>
+          <Card.Title>{category.name}</Card.Title>
         </Card.Body>
       </Card>
     </div>
