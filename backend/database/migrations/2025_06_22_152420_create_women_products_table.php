@@ -27,6 +27,7 @@ return new class extends Migration
             $table->string('color')->nullable();
             $table->enum('status', ['active', 'inactive'])->default('active');
             $table->boolean('is_featured')->default(false);
+            $table->string('size_chart')->nullable();
             $table->timestamps();
         });
     }
