@@ -8,7 +8,7 @@ import { CartContext } from "../Cart/CartContext";
 
 const Menu = [
   { id: 1, name: "Home", link: "/" },
-  { id: 2, name: "Top Rated", link: "/services" },
+  { id: 2, name: "Top Rated", link: "/top-rated" },
   { id: 3, name: "Kids Wear", link: "/kids" },
   { id: 4, name: "Mens Wear", link: "/mens" },
   { id: 5, name: "Womens Wear", link: "/womens" },
