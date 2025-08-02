@@ -13,7 +13,7 @@ const ItemCard = ({ product }) => {
       >
         <Card
           className="border-2 m-2 rounded-xl shadow-sm transition-transform duration-200 hover:scale-105 hover:border-primary-500 hover:shadow-lg"
-          style={{ width: "240px", height: "380px" }}
+          style={{ width: "240px", height: "380px", borderColor: "#CECECE", }}
         >
           <Card.Img
             variant="top"
@@ -23,12 +23,13 @@ const ItemCard = ({ product }) => {
               objectFit: "cover",
               objectPosition: "top",
               width: "100%",
+              borderRadius: "0.5rem",
             }}
           />
 
           <Card.Body className="d-flex flex-column justify-content-between">
             <div>
-              <Card.Title style={{ fontSize: "1rem", height: "40px", overflow: "hidden" }}>
+              <Card.Title style={{ fontSize: "1rem", height: "40px", marginBottom: "1rem" }}>
                 {product.name}
               </Card.Title>
               <Card.Text style={{ fontSize: "0.9rem", height: "40px", overflow: "hidden" }}>
