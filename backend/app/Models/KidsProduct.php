@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class KidsProduct extends Model
 {
     use HasFactory;
-
     protected $fillable = [
         'name',
         'slug',
@@ -18,13 +17,16 @@ class KidsProduct extends Model
         'image',
         'gallery',
         'quantity',
-        'size',
-        'color',
+        'sizes',
+        'colors',
         'status',
         'is_featured',
+        'size_chart',
     ];
 
     protected $casts = [
+        'colors' => 'array',
+        'sizes' => 'array',
         'gallery' => 'array',
         'is_featured' => 'boolean',
     ];
