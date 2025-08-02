@@ -27,6 +27,9 @@ const HomePage = () => {
       .catch((err) => console.error("Failed to fetch items:", err));
   }, []);
 
+   // Filter top products
+  const topProducts = products.filter((product) => product.top_product === 1);
+
   return (
     <div>
       <Navbar/>
@@ -35,8 +38,9 @@ const HomePage = () => {
       <ProductCardGrid categories={categories} />
       <div>
         <p className="text-3xl font-semibold text-center mb-8">Top Items</p>
+
       </div> 
-      <ItemCardGrid products={products} />
+      <ItemCardGrid products={topProducts} />
       <Footer/>
     </div>
   );
