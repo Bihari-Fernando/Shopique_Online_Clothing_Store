@@ -11,6 +11,7 @@ import MenPage from './components/MenPage/MenPage';
 import KidsPage from './components/KidsPage/KidsPage';
 import Login from './components/Common/Authentication/Login';
 import Register from './components/Common/Authentication/Register';
+import TopRatedPage from './components/TopRatedPage/TopRatedPage';
 
 const App = () => {
   return (
@@ -25,6 +26,7 @@ const App = () => {
         <Route path='/kids' element={<KidsPage/>}/>
         <Route path='/login' element={<Login/>}/>
         <Route path='/register' element={<Register/>}/>
+        <Route path="/top-rated" element={<TopRatedPage />} />
       </Routes>
     </div>
   );
