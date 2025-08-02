@@ -22,3 +22,5 @@ Route::get('/categories', [CategoryController::class, 'index']);
 Route::get('/products', [ProductController::class, 'index']);
 Route::get('/products/{category}', [ProductController::class, 'getByCategory']);
 Route::post('/products/{category}', [ProductController::class, 'store']); // optional
+
+Route::get('/products/top-rated', [ProductController::class, 'getTopRated']);
