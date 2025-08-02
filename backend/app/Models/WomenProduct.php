@@ -22,6 +22,7 @@ class WomenProduct extends Model
         'status',
         'is_featured',
         'size_chart',
+        'top_product',
     ];
 
     protected $casts = [
