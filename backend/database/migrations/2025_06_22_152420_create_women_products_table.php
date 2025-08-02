@@ -23,8 +23,8 @@ return new class extends Migration
             $table->string('image')->nullable();
             $table->json('gallery')->nullable();
             $table->integer('quantity');
-            $table->string('size')->nullable();
-            $table->string('color')->nullable();
+            $table->json('sizes')->nullable();
+            $table->json('colors')->nullable();
             $table->enum('status', ['active', 'inactive'])->default('active');
             $table->boolean('is_featured')->default(false);
             $table->string('size_chart')->nullable();
