@@ -16,7 +16,7 @@ const KidsPage = () => {
     axios
       .get("http://localhost:8000/api/products/kids")
       .then((res) => setProducts(res.data))
-      .catch((err) => console.error("Failed to fetch women's products", err));
+      .catch((err) => console.error("Failed to fetch kids's products", err));
   }, []);
 
   const filterByPrice = (price, range) => {
