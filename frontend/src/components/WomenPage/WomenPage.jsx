@@ -33,12 +33,16 @@ const WomenPage = () => {
   };
 
   // ✅ Filter logic
-  const filteredItems = products.filter(
-    (product) =>
-      (selectedSize === "All" || product.size === selectedSize) &&
-      (selectedColor === "All" || product.color === selectedColor) &&
-      filterByPrice(product.price, selectedPrice)
-  );
+  const filteredItems = products.filter((product) =>
+  (selectedSize === "All" ||
+    (Array.isArray(product.sizes) && product.sizes.includes(selectedSize)) ||
+    (typeof product.sizes === "string" && product.sizes.includes(selectedSize))) &&
+  (selectedColor === "All" ||
+    (Array.isArray(product.color) && product.color.includes(selectedColor)) ||
+    (typeof product.color === "string" && product.color.includes(selectedColor))) &&
+  filterByPrice(product.price, selectedPrice)
+);
+
 
   return (
     <div>
