@@ -12,7 +12,6 @@ const Menu = [
   { id: 3, name: "Kids Wear", link: "/kids" },
   { id: 4, name: "Mens Wear", link: "/mens" },
   { id: 5, name: "Womens Wear", link: "/womens" },
-  { id: 6, name: "Trending Items", link: "/trending" },
 ];
 
 const Navbar = () => {
