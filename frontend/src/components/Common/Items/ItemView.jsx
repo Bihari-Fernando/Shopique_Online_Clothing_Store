@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { Button } from "react-bootstrap"; // you can keep this or replace with your own button styling
+import { Button } from "react-bootstrap";
 import { CartContext } from "../Cart/CartContext";
 import Navbar from "../Navbar/Navbar";
 import Footer from "../Footer/Footer";
@@ -13,6 +13,8 @@ const ItemView = () => {
 
   const [mainImage, setMainImage] = useState(null);
   const [showSizeChart, setShowSizeChart] = useState(false);
+  const [selectedSize, setSelectedSize] = useState(null);
+  const [selectedColor, setSelectedColor] = useState(null);
 
   const BASE_URL = "http://localhost:8000";
 
@@ -23,6 +25,7 @@ const ItemView = () => {
     ? getFullUrl(mainImage)
     : getFullUrl(product?.image);
 
+  // Parse gallery images
   let galleryImages = [];
   if (product?.gallery) {
     try {
@@ -37,9 +40,45 @@ const ItemView = () => {
     }
   }
 
+  // Parse sizes
+  let sizes = [];
+  try {
+    if (Array.isArray(product.sizes)) {
+      sizes = product.sizes;
+    } else if (typeof product.sizes === "string") {
+      sizes = JSON.parse(product.sizes);
+    }
+  } catch {
+    sizes = [];
+  }
+
+  // Parse colors from the "colors" field (updated from "color")
+  let colors = [];
+  try {
+    if (Array.isArray(product.colors)) {
+      colors = product.colors;
+    } else if (typeof product.colors === "string") {
+      colors = JSON.parse(product.colors);
+    }
+  } catch {
+    colors = [];
+  }
+
   const handleAddToCart = () => {
-    addToCart({ ...product, quantity: 1 });
-    alert(`${product.name} has been added to your cart!`);
+    if (!selectedSize || !selectedColor) {
+      alert("Please select both a size and color before adding to cart.");
+      return;
+    }
+
+    addToCart({
+      ...product,
+      size: selectedSize,
+      color: selectedColor,
+      quantity: 1,
+    });
+    alert(
+      `${product.name} (Size: ${selectedSize}, Color: ${selectedColor}) has been added to your cart!`
+    );
   };
 
   if (!product) {
@@ -58,15 +97,14 @@ const ItemView = () => {
       <Navbar />
       <div className="container mx-auto my-10 px-4 md:px-10">
         <div className="flex flex-col md:flex-row items-start gap-10">
+          {/* Left: Images */}
           <div>
-            {/* Main Image */}
             <img
               src={displayedMainImage}
               alt={product.name}
               className="w-full max-w-md rounded-lg shadow-md object-cover mb-4"
             />
 
-            {/* Gallery Thumbnails */}
             {galleryImages.length > 0 && (
               <div className="flex gap-3 overflow-x-auto max-w-md">
                 {[product.image, ...galleryImages].map((img, idx) => (
@@ -86,17 +124,58 @@ const ItemView = () => {
             )}
           </div>
 
-          {/* Product Info */}
+          {/* Right: Product Info */}
           <div className="flex flex-col gap-4 flex-1">
             <h2 className="text-3xl font-bold">{product.name}</h2>
             <p className="text-lg">
               Price: <span className="font-semibold">${product.price}</span>
             </p>
-            <p className="text-lg">
-              Size: <span className="font-semibold">{product.size}</span>
-            </p>
 
-            {/* Size Chart Link */}
+            {/* Sizes */}
+            {sizes.length > 0 && (
+              <div className="flex flex-col gap-2">
+                <span className="text-lg font-medium">Available Sizes:</span>
+                <div className="flex gap-2 flex-wrap">
+                  {sizes.map((size) => (
+                    <button
+                      key={size}
+                      onClick={() => setSelectedSize(size)}
+                      className={`px-4 py-1 rounded border font-medium ${
+                        selectedSize === size
+                          ? "bg-blue-600 text-white"
+                          : "bg-white text-gray-800 border-gray-400 hover:bg-gray-100"
+                      }`}
+                    >
+                      {size}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Colors */}
+            {colors.length > 0 && (
+              <div className="flex flex-col gap-2">
+                <span className="text-lg font-medium">Available Colors:</span>
+                <div className="flex gap-2 flex-wrap">
+                  {colors.map((color) => (
+                    <button
+                      key={color}
+                      onClick={() => setSelectedColor(color)}
+                      className={`px-4 py-1 rounded border font-medium ${
+                        selectedColor === color
+                          ? "bg-green-600 text-white"
+                          : "bg-white text-gray-800 border-gray-400 hover:bg-gray-100"
+                      }`}
+                    >
+                      {color}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Size Chart */}
             {product.size_chart && (
               <div>
                 <button
@@ -106,7 +185,6 @@ const ItemView = () => {
                   View Size Chart
                 </button>
 
-                {/* Tailwind Modal */}
                 {showSizeChart && (
                   <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-sm">
                     <div className="relative bg-white p-4 rounded-lg shadow-xl max-w-lg w-full mx-4">
@@ -128,9 +206,7 @@ const ItemView = () => {
               </div>
             )}
 
-            <p className="text-lg">
-              Color: <span className="font-semibold">{product.color}</span>
-            </p>
+            {/* Description */}
             {product.description && (
               <p className="text-md mt-2">
                 <span className="font-semibold">Description: </span>
