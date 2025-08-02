@@ -17,14 +17,16 @@ class WomenProduct extends Model
         'image',
         'gallery',
         'quantity',
-        'size',
-        'color',
+        'sizes',
+        'colors',
         'status',
         'is_featured',
         'size_chart',
     ];
 
     protected $casts = [
+        'colors' => 'array',
+        'sizes' => 'array',
         'gallery' => 'array',
         'is_featured' => 'boolean',
     ];
