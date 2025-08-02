@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 const FilterSidebar = ({
   selectedSize,
@@ -8,22 +8,39 @@ const FilterSidebar = ({
   selectedColor,
   setSelectedColor,
 }) => {
-  const sizes = ['XS', 'S', 'M', 'L', 'XL', '2XL', '3XL'];
+  const sizes = ["XS", "S", "M", "L", "XL", "2XL", "3XL"];
   const priceRanges = [
-    { label: 'All', value: 'all' },
-    { label: 'Under $30', value: 'under30' },
-    { label: '$30 - $60', value: '30to60' },
-    { label: 'Above $60', value: 'above60' },
+    { label: "All", value: "all" },
+    { label: "Under $30", value: "under30" },
+    { label: "$30 - $60", value: "30to60" },
+    { label: "Above $60", value: "above60" },
   ];
-  const colors = ['All', 'Red', 'Blue', 'Black', 'White', 'Green'];
+
+  // Expanded color list from your seed data
+  const colors = [
+    "All",
+    "Red",
+    "Blue",
+    "Black",
+    "White",
+    "Green",
+    "Pink",
+    "Purple",
+    "Yellow",
+    "Brown",
+    "Gray",
+    "Cedar",
+    "Tortilla",
+    "Rose Pink",
+  ];
 
   return (
     <div className="w-full md:w-1/4 p-4 dark:bg-gray-800 dark:text-white border-r">
       <h2 className="text-xl font-semibold mb-4">Filters</h2>
 
       <div className="mb-6">
-        <h3 className="font-semibold mb-2">size</h3>
-        {sizes.map(size => (
+        <h3 className="font-semibold mb-2">Size</h3>
+        {sizes.map((size) => (
           <div key={size}>
             <input
               type="radio"
@@ -40,7 +57,7 @@ const FilterSidebar = ({
 
       <div className="mb-6">
         <h3 className="font-semibold mb-2">Price</h3>
-        {priceRanges.map(range => (
+        {priceRanges.map((range) => (
           <div key={range.value}>
             <input
               type="radio"
@@ -57,13 +74,13 @@ const FilterSidebar = ({
 
       <div>
         <h3 className="font-semibold mb-2">Color</h3>
-        {colors.map(color => (
+        {colors.map((color) => (
           <div key={color}>
             <input
               type="radio"
               id={color}
               name="color"
-              checked={selectedColor === color}
+              checked={selectedColor.toLowerCase() === color.toLowerCase()}
               onChange={() => setSelectedColor(color)}
               className="mr-2"
             />
