@@ -32,13 +32,21 @@ const MenPage = () => {
     }
   };
 
-  // ✅ Filter logic
-  const filteredItems = products.filter(
-    (product) =>
-      (selectedSize === "All" || product.size === selectedSize) &&
-      (selectedColor === "All" || product.color === selectedColor) &&
-      filterByPrice(product.price, selectedPrice)
-  );
+  // ✅ Clean and accurate filter logic
+  const filteredItems = products.filter((product) => {
+    const matchesSize =
+      selectedSize === "All" || product.sizes.includes(selectedSize);
+
+    const matchesColor =
+      selectedColor === "All" ||
+      product.colors.some(
+        (color) => color.toLowerCase() === selectedColor.toLowerCase()
+      );
+
+    const matchesPrice = filterByPrice(product.price, selectedPrice);
+
+    return matchesSize && matchesColor && matchesPrice;
+  });
 
   return (
     <div>
@@ -46,8 +54,8 @@ const MenPage = () => {
       <CartDrawer />
       <div className="flex flex-col md:flex-row min-h-screen">
         <FilterSidebar
-          selectedCategory={selectedSize}
-          setSelectedCategory={setSelectedSize}
+          selectedSize={selectedSize}
+          setSelectedSize={setSelectedSize}
           selectedPrice={selectedPrice}
           setSelectedPrice={setSelectedPrice}
           selectedColor={selectedColor}
