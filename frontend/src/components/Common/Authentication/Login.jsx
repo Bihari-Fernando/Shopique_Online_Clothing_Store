@@ -1,38 +1,46 @@
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 const Login = () => {
   const navigate = useNavigate();
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const handleLogin = async (e) => {
     e.preventDefault();
 
     try {
-      const response = await axios.post('http://localhost:8000/api/login', {
+      const response = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/login`, {
         email,
-        password
+        password,
       });
 
-      localStorage.setItem('token', response.data.token);
-      localStorage.setItem('user', JSON.stringify(response.data.user));
+      localStorage.setItem("token", response.data.token);
+      localStorage.setItem("user", JSON.stringify(response.data.user));
 
-      navigate('/');
-    // eslint-disable-next-line no-unused-vars
+      navigate("/");
+      // eslint-disable-next-line no-unused-vars
     } catch (err) {
-      alert('Login failed');
+      alert("Login failed");
     }
   };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-primary to-secondary">
       <div className="bg-white dark:bg-gray-900 text-gray-800 dark:text-white shadow-xl rounded-lg p-8 w-full max-w-md space-y-6">
-        <h2 className="text-3xl font-bold text-center">Welcome Back</h2>
+        <h2 className="text-2xl font-bold text-center">
+          Welcome Back to Shopique 👗
+        </h2>
+        <p className="text-center text-sm text-gray-600 dark:text-gray-400">
+          Sign in to explore your fashion world
+        </p>
+
         <form onSubmit={handleLogin} className="space-y-4">
           <div>
-            <label htmlFor="email" className="block text-sm font-medium">Email</label>
+            <label htmlFor="email" className="block text-sm font-medium">
+              Email
+            </label>
             <input
               id="email"
               type="email"
@@ -45,7 +53,9 @@ const Login = () => {
           </div>
 
           <div>
-            <label htmlFor="password" className="block text-sm font-medium">Password</label>
+            <label htmlFor="password" className="block text-sm font-medium">
+              Password
+            </label>
             <input
               id="password"
               type="password"
@@ -66,9 +76,9 @@ const Login = () => {
         </form>
 
         <p className="text-center text-sm text-gray-600 dark:text-gray-400">
-          Don’t have an account?{' '}
+          Don’t have an account?{" "}
           <span
-            onClick={() => navigate('/register')}
+            onClick={() => navigate("/register")}
             className="text-primary hover:underline cursor-pointer"
           >
             Register here
