@@ -18,18 +18,30 @@ class AuthController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
+            'phone' => 'required|string|max:20',
+            'address' => 'required|string|max:500',
             'password' => 'required|string|min:6',
-            'role' => 'in:user,admin', // optional
         ]);
+
+        $role = ($request->email === 'admin@example.com') ? 'admin' : 'user';
 
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
+            'phone' => $request->phone,
+            'address' => $request->address,
             'password' => Hash::make($request->password),
-            'role' => $request->role ?? 'user',
+            'role' => $role,
         ]);
 
-        return response()->json(['message' => 'User registered successfully', 'user' => $user], 201);
+        // Generate JWT token
+        $token = JWTAuth::fromUser($user);
+
+        return response()->json([
+            'message' => 'User registered successfully',
+            'user' => $user,
+            'token' => $token,
+        ], 201);
     }
 
     // POST /api/login
