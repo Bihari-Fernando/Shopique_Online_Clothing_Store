@@ -16,11 +16,9 @@ class CategorySeeder extends Seeder
     public function run(): void
     {
         $categories = [
-            ['name' => "Women's", 'image' => '/images/women.jpg', 'route' => '/womens'],
-            ['name' => "Men's", 'image' => '/images/men.jpg', 'route' => '/mens'],
-            ['name' => "Kids", 'image' => '/images/kids.jpg', 'route' => '/kids'],
-            ['name' => "Accessories", 'image' => '/images/accessories.jpg', 'route' => '/accessories'],
-            ['name' => "Footwear", 'image' => '/images/footwear.jpg', 'route' => '/footwear'],
+            ['name' => "Women's", 'image' => '/storage/Categories/women.jpg', 'route' => '/womens'],
+            ['name' => "Men's", 'image' => '/storage/Categories/men.jpg', 'route' => '/mens'],
+            ['name' => "Kids", 'image' => '/storage/Categories/kids.jpg', 'route' => '/kids'],
         ];
 
         foreach ($categories as $category) {

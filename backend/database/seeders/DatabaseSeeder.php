@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
+use App\Models\MenProduct;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -16,7 +18,9 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             CategorySeeder::class,
-            ProductSeeder::class,
+            WomenProductSeeder::class,
+            MenProductSeeder::class,
+            KidsProductSeeder::class,
         ]);
     }
 }
