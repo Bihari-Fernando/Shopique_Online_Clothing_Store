@@ -1,4 +1,5 @@
-# Shopique_Online_Clothing_Store
+
+Shopique E-Commerce Project
 
 This is a full-stack e-commerce project with a Laravel backend and a React frontend.
 
@@ -8,6 +9,7 @@ Tech Stack
 
 - Backend: Laravel (PHP), MySQL
 - Frontend: React, Axios
+- Deployment: Local development, Railway (backend), Netlify (frontend) [optional]
 
 ---
 
@@ -30,13 +32,19 @@ Backend (Laravel)
 5. Generate the app key:  
    php artisan key:generate
 
-6. Run database migrations:  
+6.Generate JWT Secret Key
+   php artisan jwt:secret
+
+7.Create a symbolic link to make storage public 
+   php artisan storage:link
+
+8. Run database migrations:  
    php artisan migrate
 
-7. (Optional) Seed the database:  
+9. (Optional) Seed the database:  
    php artisan db:seed
 
-8. Start the Laravel development server:  
+10. Start the Laravel development server:  
    php artisan serve
 
    The backend API will be available at http://127.0.0.1:8000.
