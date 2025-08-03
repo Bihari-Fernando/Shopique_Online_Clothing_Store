@@ -2,6 +2,8 @@ import React, { useContext } from 'react';
 import { Button } from 'react-bootstrap';
 import { CartContext } from './CartContext'; 
 import { useNavigate } from 'react-router-dom';
+import defaultImage from '../../../assets/logo.png'; 
+
 
 const CartView = () => {
   const { cartItems, removeFromCart, clearCart } = useContext(CartContext);
@@ -32,7 +34,7 @@ const CartView = () => {
           >
             <div className="flex items-center gap-4">
               <img
-                src={product.image}
+                src= {defaultImage} 
                 alt={product.name}
                 style={{ width: '100px', height: '100px', objectFit: 'cover' }}
                 className="rounded"
