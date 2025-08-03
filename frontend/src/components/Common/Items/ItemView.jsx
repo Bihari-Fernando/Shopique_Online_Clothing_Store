@@ -4,6 +4,7 @@ import { Button } from "react-bootstrap";
 import { CartContext } from "../Cart/CartContext";
 import Navbar from "../Navbar/Navbar";
 import Footer from "../Footer/Footer";
+import CartDrawer from "../../Common/Cart/CartDrawer";
 
 const ItemView = () => {
   const location = useLocation();
@@ -95,6 +96,7 @@ const ItemView = () => {
   return (
     <div>
       <Navbar />
+      <CartDrawer/>
       <div className="container mx-auto my-10 px-4 md:px-10">
         <div className="flex flex-col md:flex-row items-start gap-10">
           {/* Left: Images */}
@@ -114,7 +116,7 @@ const ItemView = () => {
                     alt={`${product.name} - view ${idx + 1}`}
                     className={`w-20 h-20 object-cover rounded cursor-pointer border-2 ${
                       getFullUrl(img) === displayedMainImage
-                        ? "border-blue-500"
+                        ? "border-teal-600"
                         : "border-transparent"
                     }`}
                     onClick={() => setMainImage(img)}
@@ -142,7 +144,7 @@ const ItemView = () => {
                       onClick={() => setSelectedSize(size)}
                       className={`px-4 py-1 rounded border font-medium ${
                         selectedSize === size
-                          ? "bg-blue-600 text-white"
+                          ? "bg-teal-800 text-white"
                           : "bg-white text-gray-800 border-gray-400 hover:bg-gray-100"
                       }`}
                     >
@@ -164,7 +166,7 @@ const ItemView = () => {
                       onClick={() => setSelectedColor(color)}
                       className={`px-4 py-1 rounded border font-medium ${
                         selectedColor === color
-                          ? "bg-green-600 text-white"
+                          ? "bg-teal-800 text-white"
                           : "bg-white text-gray-800 border-gray-400 hover:bg-gray-100"
                       }`}
                     >
@@ -180,7 +182,7 @@ const ItemView = () => {
               <div>
                 <button
                   onClick={() => setShowSizeChart(true)}
-                  className="text-blue-600 underline hover:text-blue-800 text-sm"
+                  className="text-gray-300 underline hover:text-green-800 text-sm"
                 >
                   View Size Chart
                 </button>
