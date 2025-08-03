@@ -2,7 +2,7 @@ import React from "react";
 import Card from "react-bootstrap/Card";
 import { useNavigate } from "react-router-dom";
 
-const backendBaseUrl = "http://localhost:8000";
+const backendBaseUrl = `${import.meta.env.VITE_API_BASE_URL}`;
 
 const ProductCard = ({ category }) => {
   const navigate = useNavigate();

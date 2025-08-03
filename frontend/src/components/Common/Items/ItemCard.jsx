@@ -17,7 +17,7 @@ const ItemCard = ({ product }) => {
         >
           <Card.Img
             variant="top"
-            src={`http://localhost:8000${product.image}`}
+            src={`${import.meta.env.VITE_API_BASE_URL}${product.image}`}
             style={{
               height: "250px",
               objectFit: "cover",

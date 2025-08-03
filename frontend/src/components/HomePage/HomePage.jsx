@@ -15,15 +15,18 @@ const HomePage = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8000/api/categories")
+      .get(`${import.meta.env.VITE_API_BASE_URL}/api/categories`)
       .then((res) => setCategories(res.data))
       .catch((err) => console.error("Failed to fetch categories:", err));
   }, []);
 
   useEffect(() => {
     axios
-      .get("http://localhost:8000/api/products")
-      .then((res) => setProducts(res.data))
+      .get(`${import.meta.env.VITE_API_BASE_URL}/api/products`)
+      .then((res) => {
+    console.log("API Response:", res.data);  // 👈 ADD THIS LINE
+    setProducts(res.data);                   // 👈 Might need to change this
+  })
       .catch((err) => console.error("Failed to fetch items:", err));
   }, []);
 

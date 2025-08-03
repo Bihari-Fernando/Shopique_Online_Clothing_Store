@@ -16,7 +16,7 @@ const ItemView = () => {
   const [selectedSize, setSelectedSize] = useState(null);
   const [selectedColor, setSelectedColor] = useState(null);
 
-  const BASE_URL = "http://localhost:8000";
+  const BASE_URL = `${import.meta.env.VITE_API_BASE_URL}`;
 
   const getFullUrl = (url) =>
     url?.startsWith("http") ? url : `${BASE_URL}${url}`;

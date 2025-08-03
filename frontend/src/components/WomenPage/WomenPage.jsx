@@ -14,7 +14,7 @@ const WomenPage = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8000/api/products/women")
+      .get(`${import.meta.env.VITE_API_BASE_URL}/api/products/women`)
       .then((res) => setProducts(res.data))
       .catch((err) => console.error("Failed to fetch women's products", err));
   }, []);
