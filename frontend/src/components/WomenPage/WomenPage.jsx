@@ -22,11 +22,11 @@ const WomenPage = () => {
   const filterByPrice = (price, range) => {
     switch (range) {
       case "under30":
-        return price < 30;
+        return price < 2000;
       case "30to60":
-        return price >= 30 && price <= 60;
+        return price >= 2000 && price <= 4000;
       case "above60":
-        return price > 60;
+        return price > 4000;
       default:
         return true;
     }
