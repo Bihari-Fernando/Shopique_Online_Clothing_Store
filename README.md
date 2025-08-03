@@ -68,15 +68,5 @@ Frontend (React)
 
 ---
 
-Notes
 
-- Make sure your Laravel backend is running before starting the frontend, so API calls work.
-- Adjust environment variables as needed for production or deployment.
-- You can deploy backend and frontend separately on platforms like Railway (backend) and Netlify (frontend).
-
----
-
-Contact
-
-If you want to collaborate or have questions, feel free to reach out!
 
