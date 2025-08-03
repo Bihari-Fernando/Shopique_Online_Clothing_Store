@@ -16,9 +16,9 @@ const ItemView = () => {
   const [showSizeChart, setShowSizeChart] = useState(false);
   const [selectedSize, setSelectedSize] = useState(null);
   const [selectedColor, setSelectedColor] = useState(null);
+  const [quantity, setQuantity] = useState(1);
 
   const BASE_URL = `${import.meta.env.VITE_API_BASE_URL}`;
-
   const getFullUrl = (url) =>
     url?.startsWith("http") ? url : `${BASE_URL}${url}`;
 
@@ -26,7 +26,6 @@ const ItemView = () => {
     ? getFullUrl(mainImage)
     : getFullUrl(product?.image);
 
-  // Parse gallery images
   let galleryImages = [];
   if (product?.gallery) {
     try {
@@ -41,26 +40,20 @@ const ItemView = () => {
     }
   }
 
-  // Parse sizes
   let sizes = [];
   try {
-    if (Array.isArray(product.sizes)) {
-      sizes = product.sizes;
-    } else if (typeof product.sizes === "string") {
-      sizes = JSON.parse(product.sizes);
-    }
+    sizes = Array.isArray(product.sizes)
+      ? product.sizes
+      : JSON.parse(product.sizes || "[]");
   } catch {
     sizes = [];
   }
 
-  // Parse colors from the "colors" field (updated from "color")
   let colors = [];
   try {
-    if (Array.isArray(product.colors)) {
-      colors = product.colors;
-    } else if (typeof product.colors === "string") {
-      colors = JSON.parse(product.colors);
-    }
+    colors = Array.isArray(product.colors)
+      ? product.colors
+      : JSON.parse(product.colors || "[]");
   } catch {
     colors = [];
   }
@@ -75,10 +68,11 @@ const ItemView = () => {
       ...product,
       size: selectedSize,
       color: selectedColor,
-      quantity: 1,
+      quantity: quantity,
     });
+
     alert(
-      `${product.name} (Size: ${selectedSize}, Color: ${selectedColor}) has been added to your cart!`
+      `${product.name} (Size: ${selectedSize}, Color: ${selectedColor}, Quantity: ${quantity}) has been added to your cart!`
     );
   };
 
@@ -96,7 +90,7 @@ const ItemView = () => {
   return (
     <div>
       <Navbar />
-      <CartDrawer/>
+      <CartDrawer />
       <div className="container mx-auto my-10 px-4 md:px-10">
         <div className="flex flex-col md:flex-row items-start gap-10">
           {/* Left: Images */}
@@ -176,6 +170,28 @@ const ItemView = () => {
                 </div>
               </div>
             )}
+
+            {/* ✅ Quantity Selector */}
+            <div className="flex flex-col gap-2">
+              <label className="text-lg font-medium">Select Quantity:</label>
+              <div className="flex items-center gap-3">
+                <Button
+                  variant="outline-secondary"
+                  size="sm"
+                  onClick={() => setQuantity((q) => (q > 1 ? q - 1 : 1))}
+                >
+                  −
+                </Button>
+                <span className="text-lg">{quantity}</span>
+                <Button
+                  variant="outline-secondary"
+                  size="sm"
+                  onClick={() => setQuantity((q) => q + 1)}
+                >
+                  +
+                </Button>
+              </div>
+            </div>
 
             {/* Size Chart */}
             {product.size_chart && (
