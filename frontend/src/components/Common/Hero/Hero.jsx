@@ -41,7 +41,7 @@ const Hero = () => {
               Discover unbeatable deals on trendy styles.
             </p>
             <button
-              onClick={() => handleNavigate("/women")}
+              onClick={() => handleNavigate("/womens")}
               className="bg-gradient-to-r from-primary to-secondary transition-all duration-200 text-white py-2 px-6 rounded-full flex items-center gap-3 group"
             >
               Order Now
@@ -65,7 +65,7 @@ const Hero = () => {
               Explore premium styles designed for comfort.
             </p>
             <button
-              onClick={() => handleNavigate("/men")}
+              onClick={() => handleNavigate("/mens")}
               className="bg-gradient-to-r from-primary to-secondary transition-all duration-200 text-white py-2 px-6 rounded-full flex items-center gap-3 group"
             >
               Order Now
@@ -89,7 +89,7 @@ const Hero = () => {
               Storewide savings on every item you love.
             </p>
             <button
-              onClick={() => handleNavigate("/products")}
+              onClick={() => handleNavigate("/")}
               className="bg-gradient-to-r from-primary to-secondary transition-all duration-200 text-white py-2 px-6 rounded-full flex items-center gap-3 group"
             >
               Order Now
