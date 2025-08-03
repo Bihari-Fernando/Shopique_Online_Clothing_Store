@@ -42,7 +42,7 @@ const CartDrawer = () => {
                 <div className="flex-1">
                   <p className="font-semibold">{product.name}</p>
                   <p className="text-sm text-gray-600 dark:text-gray-400">
-                    ${product.price} × {product.quantity}
+                    Rs{product.price} × {product.quantity}
                   </p>
                 </div>
                 <Button size="sm" variant="outline-danger" onClick={() => removeFromCart(product.id)}>Remove</Button>
@@ -55,7 +55,7 @@ const CartDrawer = () => {
       {/* Total & Actions */}
       {cartItems.length > 0 && (
         <div className="p-4 border-t border-gray-300 dark:border-gray-700">
-          <h4 className="text-lg font-semibold">Total: ${totalPrice.toFixed(2)}</h4>
+          <h4 className="text-lg font-semibold">Total: Rs{totalPrice.toFixed(2)}</h4>
           <div className="mt-3 flex gap-2">
             <Button variant="warning" onClick={clearCart} size="sm">Clear</Button>
             <Button
