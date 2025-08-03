@@ -9,7 +9,6 @@ Tech Stack
 
 - Backend: Laravel (PHP), MySQL
 - Frontend: React, Axios
-- Deployment: Local development, Railway (backend), Netlify (frontend) [optional]
 
 ---
 
