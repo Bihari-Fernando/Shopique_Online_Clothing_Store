@@ -42,13 +42,20 @@ const Footer = () => {
         <div data-aos="zoom-in" className="grid md:grid-cols-3 pb-20 pt-5">
           <div className="py-8 px-4">
             <h1 className="sm:text-3xl text-xl font-bold sm:text-left text-justify mb-3 flex items-center gap-3">
-              <img src={footerLogo} alt="Shopsy Logo" className="max-w-[50px]" />
-              Shopsy
+              <img
+                src={footerLogo}
+                alt="Shopsy Logo"
+                className="max-w-[50px]"
+              />
+              Shopique
             </h1>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum in
-              beatae ea recusandae blanditiis veritatis.
-            </p>
+            🛍️ Your Ultimate Online Fashion Destination At Shopique,
+            we bring you the latest trends in fashion, accessories, and
+            lifestyle essentials-all in one place. Discover a wide range of
+            high-quality products for Women, Men, Kids, and Accessories at
+            unbeatable prices. With fast shipping, secure payments, and
+            exceptional customer service, we make online shopping simple, safe,
+            and satisfying.
           </div>
 
           {/* Footer Links */}
@@ -91,9 +98,15 @@ const Footer = () => {
             {/* Social + Contact Info */}
             <div>
               <div className="flex items-center gap-3 mt-6">
-                <a href="#"><FaInstagram className="text-3xl" /></a>
-                <a href="#"><FaFacebook className="text-3xl" /></a>
-                <a href="#"><FaLinkedin className="text-3xl" /></a>
+                <a href="#">
+                  <FaInstagram className="text-3xl" />
+                </a>
+                <a href="#">
+                  <FaFacebook className="text-3xl" />
+                </a>
+                <a href="#">
+                  <FaLinkedin className="text-3xl" />
+                </a>
               </div>
               <div className="mt-6">
                 <div className="flex items-center gap-3">
