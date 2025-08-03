@@ -33,7 +33,7 @@ const ItemCard = ({ product }) => {
                 {product.name}
               </Card.Title>
               <Card.Text style={{ fontSize: "0.9rem", height: "40px", overflow: "hidden" }}>
-                Price: ${product.price} <br />
+                Price: Rs.{product.price} <br />
                 Size: {product.sizes?.join(", ")}
               </Card.Text>
             </div>

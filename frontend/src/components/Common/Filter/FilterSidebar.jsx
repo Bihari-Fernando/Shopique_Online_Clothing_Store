@@ -11,9 +11,9 @@ const FilterSidebar = ({
   const sizes = ["XS", "S", "M", "L", "XL", "2XL", "3XL"];
   const priceRanges = [
     { label: "All", value: "all" },
-    { label: "Under $30", value: "under30" },
-    { label: "$30 - $60", value: "30to60" },
-    { label: "Above $60", value: "above60" },
+    { label: "Under Rs2000", value: "under30" },
+    { label: "Rs2000 - Rs4000", value: "30to60" },
+    { label: "Above Rs4000", value: "above60" },
   ];
 
   // Expanded color list from your seed data
