@@ -4,6 +4,7 @@ import { CartContext } from './CartContext';
 import { Button } from 'react-bootstrap';
 import { FaTimes } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
+import Logo from '../../../assets/logo_white.png'; 
 
 const CartDrawer = () => {
   const { cartItems, removeFromCart, clearCart, isCartOpen, toggleCart } = useContext(CartContext);
@@ -34,7 +35,7 @@ const CartDrawer = () => {
                 className="flex items-center justify-between gap-3 border-b pb-2"
               >
                 <img
-                  src={product.image}
+                  src={Logo}
                   alt={product.name}
                   className="w-16 h-16 object-cover rounded"
                 />
