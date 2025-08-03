@@ -14,7 +14,7 @@ const TopRatedPage = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8000/api/products")
+      .get(`${import.meta.env.VITE_API_BASE_URL}/api/products`)
       .then((res) => setProducts(res.data))
       .catch((err) => console.error("Failed to fetch items:", err));
   }, []);
