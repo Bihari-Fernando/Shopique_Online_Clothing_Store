@@ -17,7 +17,7 @@ How to Run the Project
 Backend (Laravel)
 
 1. Clone the repo:  
-   git clone https://github.com/yourusername/yourrepo.git
+   https://github.com/Bihari-Fernando/Shopique_Online_Clothing_Store.git
 
 2. Change to backend directory:  
    cd backend
