@@ -1,7 +1,7 @@
-// src/components/Product/ProductView.jsx
 import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
+import CartDrawer from '../../Common/Cart/CartDrawer';
 
 const ProductView = () => {
   const location = useLocation();
@@ -19,6 +19,7 @@ const ProductView = () => {
 
   return (
     <div className="container mx-auto my-10 px-4 md:px-10">
+    <CartDrawer/>
       <div className="flex flex-col md:flex-row items-center gap-10">
         <img
           src={category.image}
