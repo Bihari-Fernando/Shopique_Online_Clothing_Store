@@ -113,4 +113,51 @@ class ProductController extends Controller
     {
         return $this->modelMap[$category] ?? null;
     }
+
+    public function getProductById($category, $id)
+    {
+        $model = $this->getModelForCategory($category);
+        if (!$model) {
+            return response()->json(['error' => 'Invalid category'], 404);
+        }
+
+        $product = $model::find($id);
+        if (!$product) {
+            return response()->json(['error' => 'Product not found'], 404);
+        }
+
+        return response()->json($product);
+
+        $product->category = $category;
+
+        return response()->json($product);
+    }
+
+
+    public function updateQuantity(Request $request, $category, $id)
+    {
+        $model = $this->getModelForCategory($category);
+        if (!$model) {
+            return response()->json(['error' => 'Invalid category'], 404);
+        }
+
+        $validated = $request->validate([
+            'action' => 'required|in:increment,decrement',
+        ]);
+
+        $product = $model::find($id);
+        if (!$product) {
+            return response()->json(['error' => 'Product not found'], 404);
+        }
+
+        if ($validated['action'] === 'increment') {
+            $product->quantity += 1;
+        } elseif ($validated['action'] === 'decrement' && $product->quantity > 0) {
+            $product->quantity -= 1;
+        }
+
+        $product->save();
+
+        return response()->json($product);
+    }
 }
