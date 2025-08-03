@@ -31,10 +31,10 @@ Backend (Laravel)
 5. Generate the app key:  
    php artisan key:generate
 
-6.Generate JWT Secret Key
+6.Generate JWT Secret Key:
    php artisan jwt:secret
 
-7.Create a symbolic link to make storage public 
+7.Create a symbolic link to make storage public:
    php artisan storage:link
 
 8. Run database migrations:  
