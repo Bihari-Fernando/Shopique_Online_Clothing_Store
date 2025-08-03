@@ -12,6 +12,13 @@ use App\Models\AccessoriesProduct;
 
 class ProductController extends Controller
 {
+    protected $modelMap = [
+        'women' => WomenProduct::class,
+        'men' => MenProduct::class,
+        'kids' => KidsProduct::class,
+        'accessories' => AccessoriesProduct::class,
+    ];
+
     public function index()
     {
         $allProducts = [];
@@ -27,14 +34,6 @@ class ProductController extends Controller
         return response()->json($allProducts);
     }
 
-    protected $modelMap = [
-        'women' => WomenProduct::class,
-        'men' => MenProduct::class,
-        'kids' => KidsProduct::class,
-        'accessories' => AccessoriesProduct::class,
-    ];
-
-    // Get all products from specific category
     public function getByCategory($category)
     {
         $model = $this->getModelForCategory($category);
@@ -46,7 +45,6 @@ class ProductController extends Controller
         return response()->json($products);
     }
 
-    // Store new product in specific category
     public function store(Request $request, $category)
     {
         $model = $this->getModelForCategory($category);
@@ -61,14 +59,15 @@ class ProductController extends Controller
             'gallery.*' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
             'quantity' => 'required|integer',
             'description' => 'nullable|string',
+            'top_product' => 'nullable|boolean', // <-- Add validation for top_product if you want to set it on create
         ]);
 
-        // Handle image
+        // Handle image upload
         $imagePath = $request->hasFile('image')
             ? $request->file('image')->store('products/' . $category, 'public')
             : null;
 
-        // Handle gallery
+        // Handle gallery upload
         $galleryPaths = [];
         if ($request->hasFile('gallery')) {
             foreach ($request->file('gallery') as $file) {
@@ -76,7 +75,7 @@ class ProductController extends Controller
             }
         }
 
-        $product = $model::create([
+        $productData = [
             'name' => $validated['name'],
             'slug' => Str::slug($validated['name']) . '-' . uniqid(),
             'price' => $validated['price'],
@@ -84,12 +83,32 @@ class ProductController extends Controller
             'gallery' => json_encode($galleryPaths),
             'quantity' => $validated['quantity'],
             'description' => $validated['description'] ?? null,
-        ]);
+            'top_product' => $validated['top_product'] ?? 0,  // default 0 if not provided
+        ];
+
+        $product = $model::create($productData);
 
         return response()->json($product, 201);
     }
 
-    // Helper to get model class
+    // New method: get all top-rated products from all categories
+    public function getTopRated()
+    {
+        $topProducts = [];
+
+        foreach ($this->modelMap as $category => $model) {
+            $products = $model::where('top_product', 1)
+                ->get()
+                ->map(function ($product) use ($category) {
+                    $product->category = $category;
+                    return $product;
+                });
+            $topProducts = array_merge($topProducts, $products->toArray());
+        }
+
+        return response()->json($topProducts);
+    }
+
     private function getModelForCategory($category)
     {
         return $this->modelMap[$category] ?? null;
